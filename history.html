@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password History - Password Strength Checker</title>
+    <link rel="stylesheet" href="website-style.css">
+</head>
+<body>
+<div class="decorative-blob"></div>
+
+<!-- HEADER & NAVIGATION -->
+<header class="website-header">
+    <div class="header-container">
+        <a href="index.html" class="logo">🔐 Password Strength Checker</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="checker.html">Password Checker</a>
+        </nav>
+        <div class="auth-section">
+            <!-- Populated by app.js -->
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+    <h1 class="page-title">Password History</h1>
+    
+    <div class="history-container">
+        <div class="history-controls">
+            <button class="active" id="viewAllBtn">All Passwords</button>
+            <button id="viewStrongBtn">Strong Only</button>
+            <button id="clearHistory" class="btn-logout">Clear All</button>
+        </div>
+
+        <div class="history-list" id="historyList">
+            <!-- Populated by app.js -->
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="website-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Product</h4>
+            <a href="checker.html">Password Checker</a>
+            <a href="index.html">Home</a>
+        </div>
+        <div class="footer-section">
+            <h4>Account</h4>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="settings.html">Settings</a>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <a href="#">Security Tips</a>
+            <a href="#">FAQ</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Password Strength Checker. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeHistoryPage();
+    });
+</script>
+</body>
+</html>

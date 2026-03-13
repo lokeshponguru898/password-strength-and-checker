@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker - Secure Your Accounts</title>
+    <link rel="stylesheet" href="website-style.css">
+</head>
+<body>
+<div class="decorative-blob"></div>
+
+<!-- HEADER & NAVIGATION -->
+<header class="website-header">
+    <div class="header-container">
+        <a href="index.html" class="logo">🔐 Password Strength Checker</a>
+        <nav class="nav-links">
+            <a href="index.html#home" class="nav btn">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="checker.html">Password Checker</a>
+        </nav>
+        <div class="auth-section">
+            <!-- Populated by app.js -->
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+    <section class="welcome-board" id="welcomeBoard">
+        <!-- Populated by app.js -->
+    </section>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-text">
+            <h1>Strengthen Your Security</h1>
+            <p>Analyze password strength in real-time, generate secure passwords, and track your password history. Keep your accounts safe with advanced security insights.</p>
+            <a href="checker.html" class="btn-primary">Check Password Strength</a>
+        </div>
+        <div class="hero-features">
+            <div class="feature-card">
+                <h3>✓ Real-time Analysis</h3>
+                <p>Get instant feedback on your password strength with detailed metrics.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Generate Passwords</h3>
+                <p>Create strong, random passwords with customizable requirements.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Crack Time Estimate</h3>
+                <p>See how long it would take to crack your password.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💾 Password History</h3>
+                <p>Keep track of all your generated passwords (accounts required).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASSWORD CHECKER REMOVED FROM HOME - simple CTA provided -->
+    <!-- <section class="placeholder-section">
+        <div style="max-width:720px;margin:40px auto;text-align:center;padding:24px;background:rgba(255,255,255,0.02);border-radius:12px;border:1px solid rgba(255,255,255,0.03);">
+            <h2 style="font-size:22px;margin-bottom:12px;color:var(--text-primary);">Password checker moved to its own page</h2>
+            <p style="color:var(--text-secondary);margin-bottom:18px;">To keep the homepage focused and faster to load, the interactive checker was moved out of the homepage. Use the dedicated checker from the navigation or generate and manage passwords after signing up.</p>
+            <div style="display:flex;gap:12px;justify-content:center;">
+                <a href="signup.html" class="btn-primary">Create Account</a>
+                <a href="login.html" class="btn-primary" style="background:var(--medium);">Login</a>
+            </div>
+        </div>
+    </section> -->
+</main>
+
+<!-- FOOTER -->
+<footer class="website-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Product</h4>
+            <a href="checker.html">Password Checker</a>
+            <a href="index.html">Home</a>
+        </div>
+        <div class="footer-section">
+            <h4>Account</h4>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="settings.html">Settings</a>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <a href="#">Security Tips</a>
+            <a href="#">FAQ</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <a href="#">Support</a>
+            <a href="#">Email</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Password Strength Checker. All rights reserved. | Secure your accounts with confidence.</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeHomePage();
+    });
+</script>
+</body>
+</html>

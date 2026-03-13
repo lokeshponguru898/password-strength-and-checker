@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Password Strength Checker</title>
+    <link rel="stylesheet" href="website-style.css">
+</head>
+<body>
+<div class="decorative-blob"></div>
+
+<!-- HEADER & NAVIGATION -->
+<header class="website-header">
+    <div class="header-container">
+        <a href="index.html" class="logo">🔐 Password Strength Checker</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="checker.html">Password Checker</a>
+        </nav>
+        <div class="auth-section">
+            <!-- Populated by app.js -->
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+    <h1 class="page-title">👤 User Profile</h1>
+    
+    <div class="form-container profile-container">
+        <form id="profileForm">
+            <h2 class="profile-section-title">General Details</h2>
+            
+            <!-- Name Fields Side by Side -->
+            <div class="form-row">
+                <div class="form-group form-col">
+                    <label for="profileFirstName">First Name</label>
+                    <input type="text" id="profileFirstName" placeholder="Enter your first name" required>
+                </div>
+
+                <div class="form-group form-col">
+                    <label for="profileLastName">Last Name</label>
+                    <input type="text" id="profileLastName" placeholder="Enter your last name" required>
+                </div>
+            </div>
+
+            <!-- Age Field -->
+            <div class="form-group">
+                <label for="profileAge">Age</label>
+                <input type="number" id="profileAge" placeholder="Enter your age (must be 16+)" min="16" max="120" required>
+                <span class="form-error" id="ageError" style="display: none; color: var(--very-weak); font-size: 12px; margin-top: 4px;">Age must be 16 years or older</span>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="profileEmail">Email Address</label>
+                <input type="email" id="profileEmail" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Bio Field -->
+            <div class="form-group">
+                <label for="profileBio">Bio (Optional)</label>
+                <textarea id="profileBio" placeholder="Add a short bio about yourself" rows="4" style="width: 100%; padding: 12px; background: var(--bg-input); border: 1px solid var(--border); border-radius: 6px; color: var(--text-primary); font-size: 14px; font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <!-- Account Information Section -->
+            <h2 class="profile-section-title" style="margin-top: 30px;">Account Information</h2>
+            
+            <div class="form-group">
+                <label for="profileUsername">Username</label>
+                <input type="text" id="profileUsername" placeholder="Your username" disabled style="background: var(--bg-input); opacity: 0.6; cursor: not-allowed;">
+                <span class="form-hint">Username cannot be changed</span>
+            </div>
+
+            <div class="form-group">
+                <label for="profileMemberSince">Member Since</label>
+                <input type="text" id="profileMemberSince" placeholder="Join date" disabled style="background: var(--bg-input); opacity: 0.6; cursor: not-allowed;">
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group" style="display: flex; gap: 12px; margin-top: 30px;">
+                <button type="submit" class="form-btn" style="flex: 1;">Save Changes</button>
+                <button type="reset" class="form-btn btn-secondary" style="flex: 1; background: var(--text-secondary); opacity: 0.7;">Cancel</button>
+            </div>
+
+            <div class="form-switch" style="margin-top: 20px;">
+                <a href="settings.html" style="color: var(--strong);">Go to Settings</a> | 
+                <a href="history.html" style="color: var(--strong);">View Password History</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="website-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Product</h4>
+            <a href="checker.html">Password Checker</a>
+            <a href="index.html">Home</a>
+        </div>
+        <div class="footer-section">
+            <h4>Account</h4>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <a href="#">Security Tips</a>
+            <a href="#">FAQ</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Password Strength Checker. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeProfilePage();
+    });
+
+    function initializeProfilePage() {
+        const profileForm = document.getElementById('profileForm');
+        const ageInput = document.getElementById('profileAge');
+        const ageError = document.getElementById('ageError');
+
+        // Load user profile data from current user or localStorage
+        let userData = null;
+        const currentUser = JSON.parse(localStorage.getItem('psc_currentUser'));
+        if (currentUser) {
+            userData = currentUser;
+        } else {
+            userData = JSON.parse(localStorage.getItem('userData')) || {};
+        }
+        
+        if (userData) {
+            document.getElementById('profileFirstName').value = userData.firstName || '';
+            document.getElementById('profileLastName').value = userData.lastName || '';
+            document.getElementById('profileAge').value = userData.age || '';
+            document.getElementById('profileEmail').value = userData.email || currentUser?.email || '';
+            document.getElementById('profileBio').value = userData.bio || '';
+            document.getElementById('profileUsername').value = userData.email || currentUser?.email || 'User';
+            document.getElementById('profileMemberSince').value = userData.createdAt ? new Date(userData.createdAt).toLocaleDateString() : new Date().toLocaleDateString();
+        }
+
+        // Age validation - must be 16 or older
+        ageInput.addEventListener('change', () => {
+            const age = parseInt(ageInput.value);
+            if (age < 16) {
+                ageError.style.display = 'block';
+                ageInput.style.borderColor = 'var(--very-weak)';
+            } else {
+                ageError.style.display = 'none';
+                ageInput.style.borderColor = 'var(--border)';
+            }
+        });
+
+        ageInput.addEventListener('input', () => {
+            const age = parseInt(ageInput.value);
+            if (age && age < 16) {
+                ageError.style.display = 'block';
+            } else {
+                ageError.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const firstName = document.getElementById('profileFirstName').value.trim();
+            const lastName = document.getElementById('profileLastName').value.trim();
+            const age = parseInt(document.getElementById('profileAge').value);
+            const email = document.getElementById('profileEmail').value.trim();
+            const bio = document.getElementById('profileBio').value.trim();
+
+            // Validate age
+            if (age < 16) {
+                alert('⚠️ Age must be 16 years or older');
+                ageError.style.display = 'block';
+                return;
+            }
+
+            if (!firstName || !lastName || !email) {
+                alert('⚠️ Please fill in all required fields');
+                return;
+            }
+
+            // Save profile data
+            const profileData = {
+                firstName,
+                lastName,
+                age,
+                email,
+                bio,
+                username: userData.username || userData.email || 'User',
+                joinDate: userData.joinDate || userData.createdAt || new Date().toLocaleDateString()
+            };
+
+            // Update user profile in localStorage
+            localStorage.setItem('userData', JSON.stringify(profileData));
+
+            // Update the current user session
+            const currentUser = JSON.parse(localStorage.getItem('psc_currentUser'));
+            if (currentUser) {
+                currentUser.firstName = firstName;
+                currentUser.lastName = lastName;
+                currentUser.age = age;
+                currentUser.email = email;
+                currentUser.bio = bio;
+                localStorage.setItem('psc_currentUser', JSON.stringify(currentUser));
+
+                // Also update in the users database
+                const users = JSON.parse(localStorage.getItem('psc_users') || '{}');
+                const userEmail = currentUser.email || currentUser.storageKey;
+                if (users[userEmail]) {
+                    users[userEmail].firstName = firstName;
+                    users[userEmail].lastName = lastName;
+                    users[userEmail].age = age;
+                    if (bio) users[userEmail].bio = bio;
+                    localStorage.setItem('psc_users', JSON.stringify(users));
+                }
+            }
+
+            // Update welcome board if on home page
+            const welcomeBoard = document.getElementById('welcomeBoard');
+            if (welcomeBoard) {
+                welcomeBoard.innerHTML = `
+                    <h2>Welcome, ${firstName}!</h2>
+                    <p>Strong passwords are your first defense. Run a quick check now and keep your accounts safe.</p>
+                `;
+            }
+
+            alert('✓ Profile updated successfully!');
+            console.log('Profile saved:', profileData);
+        });
+    }
+</script>
+</body>
+</html>

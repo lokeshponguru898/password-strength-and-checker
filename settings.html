@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Password Strength Checker</title>
+    <link rel="stylesheet" href="website-style.css">
+</head>
+<body>
+<div class="decorative-blob"></div>
+
+<!-- HEADER & NAVIGATION -->
+<header class="website-header">
+    <div class="header-container">
+        <a href="index.html" class="logo">🔐 Password Strength Checker</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="checker.html">Password Checker</a>
+        </nav>
+        <div class="auth-section">
+            <!-- Populated by app.js -->
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+    <h1 class="page-title">Account Settings</h1>
+    
+    <div class="settings-container">
+        <!-- Security Settings -->
+        <div class="settings-section">
+            <h3>🔒 Security Settings</h3>
+            
+            <div class="setting-item">
+                <label class="setting-label">Auto-Logout Time (minutes)</label>
+                <p class="setting-description">Automatically log out after inactivity</p>
+                <input type="number" id="autoLogoutMinutes" class="setting-input" min="5" max="240" value="30">
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Password History Limit</label>
+                <p class="setting-description">Maximum number of passwords to keep in history</p>
+                <input type="number" id="historyLimit" class="setting-input" min="10" max="200" value="50">
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Enable Notifications</label>
+                <p class="setting-description">Get alerts for important account activities</p>
+                <div class="setting-toggle" id="notificationsToggle">
+                    <div class="toggle-switch active">
+                        <div class="toggle-slider"></div>
+                    </div>
+                    <span>Enabled</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Password Strength Features -->
+        <div class="settings-section">
+            <h3>⚡ Password Strength Features</h3>
+            
+            <div class="setting-item">
+                <label class="setting-label">Minimum Password Length</label>
+                <p class="setting-description">Recommended: 8+ characters</p>
+                <div class="setting-description">✓ Current: 8 characters</div>
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Required Character Types</label>
+                <p class="setting-description">For "Very Strong" password rating:</p>
+                <ul style="margin-left: 20px; font-size: 13px; color: var(--text-secondary);">
+                    <li>✓ Uppercase letters (A-Z)</li>
+                    <li>✓ Lowercase letters (a-z)</li>
+                    <li>✓ Numbers (0-9)</li>
+                    <li>✓ Special symbols (!@#$%^&*)</li>
+                </ul>
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Crack Time Estimation</label>
+                <p class="setting-description">See how long it would take to crack your password with 1 billion guesses/second</p>
+            </div>
+        </div>
+
+        <!-- Account Actions -->
+        <div class="settings-section">
+            <h3>⚙️ Account Actions</h3>
+            
+            <div class="setting-item">
+                <button class="form-btn" id="saveSettings" style="width: 100%; max-width: 200px;">Save Settings</button>
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Logout</label>
+                <p class="setting-description">End your current session</p>
+                <button class="form-btn btn-logout" onclick="auth.logout(); window.location.href='index.html';" style="width: 100%; max-width: 200px;">Logout Now</button>
+            </div>
+        </div>
+
+        <!-- Password Strength Components Info -->
+        <div class="settings-section">
+            <h3>📊 Password Strength Components</h3>
+            
+            <div class="setting-item">
+                <label class="setting-label">Strength Levels</label>
+                <div style="margin-top: 12px; display: grid; gap: 8px;">
+                    <div style="padding: 8px; background: var(--bg-input); border-radius: 6px; font-size: 13px;">
+                        <strong style="color: var(--very-strong);">Very Strong (5/5)</strong> - Centuries to crack
+                    </div>
+                    <div style="padding: 8px; background: var(--bg-input); border-radius: 6px; font-size: 13px;">
+                        <strong style="color: var(--strong);">Strong (4/5)</strong> - Years to crack
+                    </div>
+                    <div style="padding: 8px; background: var(--bg-input); border-radius: 6px; font-size: 13px;">
+                        <strong style="color: var(--medium);">Medium (3/5)</strong> - Months to crack
+                    </div>
+                    <div style="padding: 8px; background: var(--bg-input); border-radius: 6px; font-size: 13px;">
+                        <strong style="color: var(--weak);">Weak (2/5)</strong> - Days to Weeks to crack
+                    </div>
+                    <div style="padding: 8px; background: var(--bg-input); border-radius: 6px; font-size: 13px;">
+                        <strong style="color: var(--very-weak);">Very Weak (0-1/5)</strong> - Instantly to Minutes
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <label class="setting-label">Recommended Features</label>
+                <ul style="margin-left: 20px; font-size: 13px; color: var(--text-secondary);">
+                    <li>✓ Toggle password visibility while typing</li>
+                    <li>✓ Generate strong random passwords instantly</li>
+                    <li>✓ View password strength analysis in real-time</li>
+                    <li>✓ Keep history of created passwords (requires account)</li>
+                    <li>✓ Copy passwords with one click</li>
+                    <li>✓ Auto-logout for security</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="website-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Product</h4>
+            <a href="checker.html">Password Checker</a>
+            <a href="index.html">Home</a>
+        </div>
+        <div class="footer-section">
+            <h4>Account</h4>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="settings.html">Settings</a>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <a href="#">Security Tips</a>
+            <a href="#">FAQ</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Password Strength Checker. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeSettingsPage();
+    });
+</script>
+</body>
+</html>
